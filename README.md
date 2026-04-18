@@ -1,0 +1,1 @@
+# playwright-scalable-framework
