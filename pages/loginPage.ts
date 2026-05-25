@@ -1,4 +1,5 @@
 import { Page, Locator } from "@playwright/test";
+import { Constants } from "../utility/constants";
 
 class LoginPage {
   private usernameInput: Locator;
@@ -7,14 +8,14 @@ class LoginPage {
   private loginButton: Locator;
 
   constructor(private page: Page) {
-    this.usernameInput = this.page.locator('[data-test="username"]');
-    this.passwordInput = this.page.locator('[data-test="password"]');
-    this.errorMessage = this.page.locator('[data-test="error"]');
-    this.loginButton = this.page.locator('[data-test="login-button"]');
+    this.usernameInput = this.page.locator('[class*="oxd-input"] [placeholder="Username"]');
+    this.passwordInput = this.page.locator('[class*="oxd-input"] [placeholder="Password"]');
+    this.errorMessage = this.page.locator('[class*="oxd-input-group"] [class*="oxd-input-field-error-message"]');
+    this.loginButton = this.page.locator('[class*="orangehrm-login-button"]');
   }
 
   async navigate() {
-    await this.page.goto("/");
+    await this.page.goto(Constants.baseURL);
   }
 
   async login(username: string, password: string) {
